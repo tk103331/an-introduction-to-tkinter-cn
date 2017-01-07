@@ -1,4 +1,4 @@
-**[上一页](index.html)**    **[下一页](hello-tkinter.html)**
+**[上一页](index.md)**    **[下一页](hello-tkinter.md)**
 
 ----------
 
@@ -25,4 +25,4 @@ Tkinter 模块仅导出窗口组件类和相关联的常量，因此在大多数
 <br>
 ----------
 
-**[上一页](index.html)**    **[下一页](hello-tkinter.html)**
+**[上一页](index.md)**    **[下一页](hello-tkinter.md)**

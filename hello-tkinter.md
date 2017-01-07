@@ -1,6 +1,6 @@
 
 
-**[上一页](whats-tkinter.html)**    **下一页**
+**[上一页](whats-tkinter.md)**    **下一页**
 
 ----------
 
