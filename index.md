@@ -5,7 +5,7 @@
 
 > 注意：本节中可能缺少某些图像和示例脚本，某些链接可能已损坏。
 
-- [Tkinter 是什么?](whats-tkinter.html)
+- [Tkinter 是什么?](whats-tkinter.md)
 - Hello, Tkinter
 - Hello, Again
 - Tkinter 类
