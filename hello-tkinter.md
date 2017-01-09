@@ -37,19 +37,23 @@
 
 **细节**
 
-We start by importing the Tkinter module. It contains all classes, functions and other things needed to work with the Tk toolkit. In most cases, you can simply import everything from Tkinter into your module’s namespace:
+我们从导入 Tkinter 模块开始。 它包含与Tk工具包一起使用所需的所有的类、函数和其他一些东西。 在大多数情况下，您可以简单地将所有内容从Tkinter导入到模块的命名空间：
 
-from Tkinter import *
-To initialize Tkinter, we have to create a Tk root widget. This is an ordinary window, with a title bar and other decoration provided by your window manager. You should only create one root widget for each program, and it must be created before any other widgets.
+	from Tkinter import *
 
-root = Tk()
-Next, we create a Label widget as a child to the root window:
+要初始化Tkinter，我们必须创建一个 Tk 根组件。 这是一个普通的窗口，有由窗口管理器提供的一个标题栏和其他装饰。 你应该为每个程序只创建一个根组件，并且必须先于任何其它窗口组件之前创建。
 
-w = Label(root, text="Hello, world!")
-w.pack()
-A Label widget can display either text or an icon or other image. In this case, we use the text option to specify which text to display.
+	root = Tk()
 
-Next, we call the pack method on this widget. This tells it to size itself to fit the given text, and make itself visible. However, the window won’t appear until we’ve entered the Tkinter event loop:
+接下来，我们创建一个 Label 组件作为根窗口的子组件：
 
-root.mainloop()
-The program will stay in the event loop until we close the window. The event loop doesn’t only handle events from the user (such as mouse clicks and key presses) or the windowing system (such as redraw events and window configuration messages), it also handle operations queued by Tkinter itself. Among these operations are geometry management (queued by the pack method) and display updates. This also means that the application window will not appear before you enter the main loop.
+	w = Label(root, text="Hello, world!")
+	w.pack()
+
+Label 组件可以显示文本、图标、其他图像。 在这个示例中，我们使用 **text** 选项指定要显示的文本。
+
+接下来，我们调用这个组件的 **pack** 方法。 这告诉它自己调整大小以适合给定的文本，并使其自身可见。 但是，在我们进入 Tkinter 的事件循环之前，该窗口不会显示出来：
+
+	root.mainloop()
+
+程序将停留在事件循环中，直到我们关闭窗口。 事件循环不仅处理来自用户（例如鼠标点击和按键）或窗口系统（例如重绘事件和窗口配置消息）的事件，它还处理由 Tkinter 本身排队的操作。 这些操作包括几何管理（通过 **pack** 方法排队）和显示更新。 这也意味着在进入主循环之前，应用程序窗口不会显示出来。
