@@ -46,47 +46,48 @@ from Tkinter import *
 
 如果你点击右边的按钮，会在控制台打印文本“hi there，everyone！”；如果单击左边的按钮，程序停止。
 
-> 注意：一些 Python 开发环境在运行 Tkinter 示例时遇到了问题。 问题通常是环境使用Tkinter本身，主环调用和退出调用与环境的期望相互作用。 其他环境可能会错误，如果你省略显式destroy调用。 如果示例的行为不符合预期，请检查您的开发环境的Tkinter特定文档。
+> 注意：一些 Python 开发环境在运行 Tkinter 示例时遇到了问题。 问题通常是环境使用Tkinter本身，**mainloop** 调用和 **exit** 调用与环境的期望相互作用。 如果你省略显式的 **destroy** 调用，其他环境可能会错误。 如果示例的行为不符合预期，请检查您的开发环境的 Tkinter 特定文档。
 
-Note: Some Python development environments have problems running Tkinter examples like this one. The problem is usually that the enviroment uses Tkinter itself, and the mainloop call and the quit calls interact with the environment’s expectations. Other environments may misbehave if you leave out the explicit destroy call. If the example doesn’t behave as expected, check for Tkinter-specific documentation for your development environment.
+**细节**
 
-Details
+这个示例应用程序被写为类。 构造函数（**__ init__**方法）使用父控件（主控）调用，并向其添加了一些子控件。 构造函数从创建一个 **Frame** 组件开始。 **Frame** 组件是一个简单的容器，在这种情况下只用于保存其他两个小部件。
 
-This sample application is written as a class. The constructor (the __init__ method) is called with a parent widget (the master), to which it adds a number of child widgets. The constructor starts by creating a Frame widget. A frame is a simple container, and is in this case only used to hold the other two widgets.
+    class App:
+	    def __init__(self, master):
+		    frame = Frame(master)
+		    frame.pack()
 
-class App:
-    def __init__(self, master):
-        frame = Frame(master)
-        frame.pack()
-The frame instance is stored in a local variable called frame. After creating the widget, we immediately call the pack method to make the frame visible.
+**Frame** 实例存储在称为 **frame** 的局部变量中。 创建组件后，我们立即调用 **pack** 方法使**frame**可见。
 
-We then create two Button widgets, as children to the frame.
-
+然后我们创建两个 **Button** 组件，作为框架的子控件。
  
-self.button = Button(frame, text="QUIT", fg="red", command=frame.quit)
-self.button.pack(side=LEFT)
+    self.button = Button(frame, text="QUIT", fg="red", command=frame.quit)
+    self.button.pack(side=LEFT)
+    
+    self.hi_there = Button(frame, text="Hello", command=self.say_hi)
+    self.hi_there.pack(side=LEFT)
 
-self.hi_there = Button(frame, text="Hello", command=self.say_hi)
-self.hi_there.pack(side=LEFT)
-This time, we pass a number of options to the constructor, as keyword arguments. The first button is labelled “QUIT”, and is made red (fg is short for foreground). The second is labelled “Hello”. Both buttons also take a command option. This option specifies a function, or (as in this case) a bound method, which will be called when the button is clicked.
+这次，我们向构造函数传递了一些选项作为关键字参数。 第一个按钮标记为“QUIT”，并且变为红色（fg是foreground(前景)的缩写。 第二个标记为“Hello”。 这两个按钮都有一个命令选项。 此选项指定一个函数，或（在这个例子中）一个绑定的方法，将在单击按钮时调用。
 
-The button instances are stored in instance attributes. They are both packed, but this time with the side=LEFT argument. This means that they will be placed as far left as possible in the frame; the first button is placed at the frame’s left edge, and the second is placed just to the right of the first one (at the left edge of the remaining space in the frame, that is). By default, widgets are packed relative to their parent (which is master for the frame widget, and the frame itself for the buttons). If the side is not given, it defaults to TOP.
+按钮实例存储在实例属性中。 它们都被打包，但这次使用了 side = LEFT 参数。 这意味着它们将被放置在框架中尽可能远的地方; 第一个按钮位于框架的左边缘，第二个按钮位于第一个按钮的右边（在框架中剩余空间的左边缘）。 默认情况下，窗口组件相对于其父窗口进行打包。 如果没有给出side参数，它默认为TOP。
 
-The “hello” button callback is given next. It simply prints a message to the console everytime the button is pressed:
+接下来给出“hello”按钮回调。 它只是在每次按下按钮时向控制台打印一条消息：
 
-def say_hi(self):
-    print "hi there, everyone!"
-Finally, we provide some script level code that creates a Tk root widget, and one instance of the App class using the root widget as its parent:
+    def say_hi(self):
+    	print "hi there, everyone!"
 
-root = Tk()
+最后，我们提供一些脚本级代码，用于创建一个 Tk 根窗口组件，以及创建App类的实例并使用根窗口组件作为其父窗口：
 
-app = App(root)
+	root = Tk()
+	
+	app = App(root)
+	
+	root.mainloop()
+	root.destroy()
 
-root.mainloop()
-root.destroy()
-The mainloop call enters the Tk event loop, in which the application will stay until the quit method is called (just click the QUIT button), or the window is closed.
+调用 **mainloop** 进入Tk事件循环，在该循环中应用程序将一直保持到调用 **quit** 方法（只需单击QUIT按钮），或者窗口关闭。
 
-The destroy call is only required if you run this example under certain development environments; it explicitly destroys the main window when the event loop is terminated. Some development environments won’t terminate the Python process unless this is done.
+只有在某些开发环境下运行此示例时，才需要调用 destroy; 它在事件循环终止时显式地销毁主窗口。 一些开发环境不会终止Python进程，除非这样做。
 
 More on widget references
 
@@ -100,8 +101,8 @@ Note that if you don’t need to keep a reference to a widget, it might be tempt
 Button(frame, text="Hello", command=self.hello).pack(side=LEFT)
 Don’t store the result from this operation; you’ll only get disappointed when you try to use that value (the pack method returns None). To be on the safe side, it might be better to always separate construction from packing:
 
-w = Button(frame, text="Hello", command=self.hello) 
-w.pack(side=LEFT)
+	w = Button(frame, text="Hello", command=self.hello) 
+	w.pack(side=LEFT)
 More on widget names
 
 Another source of confusion, especially for those who have some experience of programming Tk using Tcl, is Tkinter’s notion of the widget name. In Tcl, you must explicitly name each widget. For example, the following Tcl command creates a Button named “ok”, as a child to a widget named “dialog” (which in turn is a child of the root window, “.”).
@@ -109,7 +110,7 @@ Another source of confusion, especially for those who have some experience of pr
 button .dialog.ok
 The corresponding Tkinter call would look like:
 
-ok = Button(dialog)
+	ok = Button(dialog)
 However, in the Tkinter case, ok and dialog are references to widget instances, not the actual names of the widgets. Since Tk itself needs the names, Tkinter automatically assigns a unique name to each new widget. In the above case, the dialog name is probably something like “.1428748,” and the button could be named “.1428748.1432920”. If you wish to get the full name of a Tkinter widget, simply use the str function on the widget instance:
 
 >>> print str(ok)
@@ -120,5 +121,5 @@ If you really need to specify the name of a widget, you can use the name option 
 
 In the following example, the resulting widget is named “.dialog.ok” (or, if you forgot to name the dialog, something like “.1428748.ok”):
 
-ok = Button(dialog, name="ok")
+	ok = Button(dialog, name="ok")
 To avoid conflicts with Tkinter’s naming scheme, don’t use names which only contain digits. Also note that name is a “creation only” option; you cannot change the name once you’ve created the widget.
