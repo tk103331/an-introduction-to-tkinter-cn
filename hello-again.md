@@ -89,21 +89,22 @@ from Tkinter import *
 
 只有在某些开发环境下运行此示例时，才需要调用 destroy; 它在事件循环终止时显式地销毁主窗口。 一些开发环境不会终止Python进程，除非这样做。
 
-More on widget references
+**关于组件的引用**
 
-In the second example, the frame widget is stored in a local variable named frame, while the button widgets are stored in two instance attributes. Isn’t there a serious problem hidden in here: what happens when the __init__ function returns and the frame variable goes out of scope?
+在第二个示例中，框架组件存储在名为frame的局部变量中，而按钮组件存储在两个实例属性中。 是不是有一个严重的问题隐藏在这里：当__ init__函数返回并且框架变量超出范围时会发生什么？
 
-Just relax; there’s actually no need to keep a reference to the widget instance. Tkinter automatically maintains a widget tree (via the master and children attributes of each widget instance), so a widget won’t disappear when the application’s last reference goes away; it must be explicitly destroyed before this happens (using the destroy method). But if you wish to do something with the widget after it has been created, you better keep a reference to the widget instance yourself.
+放轻松; 实际上没有必要保持对组件实例的引用。Tkinter自动维护一个组件树（通过每个组件实例的master属性和children属性），因此当应用程序的最后一个引用消失时，小部件不会消失; 它必须在这之前被显式地销毁（使用destroy方法）。 但是如果你想在窗口组件创建后做一些事情，你最好自己保持对窗口部件实例的引用。
 
-Note that if you don’t need to keep a reference to a widget, it might be tempting to create and pack it on a single line:
+请注意，如果您不需要保留对窗口小部件的引用，则可能很容易在一行中创建和打包它：
 
- 
-Button(frame, text="Hello", command=self.hello).pack(side=LEFT)
-Don’t store the result from this operation; you’ll only get disappointed when you try to use that value (the pack method returns None). To be on the safe side, it might be better to always separate construction from packing:
+	Button(frame, text="Hello", command=self.hello).pack(side=LEFT)
+
+不要存储此操作的结果; 你只会在尝试使用该值时感到失望（pack方法返回None）。 为了安全起见，最好始终将构造与打包分开：
 
 	w = Button(frame, text="Hello", command=self.hello) 
 	w.pack(side=LEFT)
-More on widget names
+
+**关于组件的名称**
 
 Another source of confusion, especially for those who have some experience of programming Tk using Tcl, is Tkinter’s notion of the widget name. In Tcl, you must explicitly name each widget. For example, the following Tcl command creates a Button named “ok”, as a child to a widget named “dialog” (which in turn is a child of the root window, “.”).
 
