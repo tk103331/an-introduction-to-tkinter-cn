@@ -50,7 +50,7 @@
 
 
 
-## Part III. The BWidget Extension Library # ##
+## Part III. The BWidget Extension Library ##
 
 > Note: Incomplete.
 
@@ -59,7 +59,7 @@
 - The BWidget Label Widget
 - The BWidget Tree Widget
 
-## Part IV. The Widget Construction Kit # ##
+## Part IV. The Widget Construction Kit ##
 
 > Note: Incomplete.
 

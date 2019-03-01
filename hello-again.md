@@ -1,6 +1,6 @@
 
 
-**[上一页](whats-tkinter.md)**    **下一页**
+**[上一页](hello-tkinter.md)**    **下一页**
 
 ----------
 
@@ -10,6 +10,7 @@
 
 我们的第二个Tkinter程序
 
+``` python
 from Tkinter import *
 
 	class App:
@@ -37,7 +38,7 @@ from Tkinter import *
 	root.mainloop()
 	root.destroy() # optional; see description below
 
-
+```
 **运行这个例子**
 
 运行此示例时，将显示以下窗口。
@@ -52,20 +53,24 @@ from Tkinter import *
 
 这个示例应用程序被写为类。 构造函数（**__ init__**方法）使用父控件（主控）调用，并向其添加了一些子控件。 构造函数从创建一个 **Frame** 组件开始。 **Frame** 组件是一个简单的容器，在这种情况下只用于保存其他两个小部件。
 
-    class App:
-	    def __init__(self, master):
-		    frame = Frame(master)
-		    frame.pack()
+```python
+class App:
+    def __init__(self, master):
+	    frame = Frame(master)
+	    frame.pack()
+```
 
 **Frame** 实例存储在称为 **frame** 的局部变量中。 创建组件后，我们立即调用 **pack** 方法使**frame**可见。
 
 然后我们创建两个 **Button** 组件，作为框架的子控件。
- 
-    self.button = Button(frame, text="QUIT", fg="red", command=frame.quit)
-    self.button.pack(side=LEFT)
-    
-    self.hi_there = Button(frame, text="Hello", command=self.say_hi)
-    self.hi_there.pack(side=LEFT)
+
+```python
+self.button = Button(frame, text="QUIT", fg="red", command=frame.quit)
+self.button.pack(side=LEFT)
+
+self.hi_there = Button(frame, text="Hello", command=self.say_hi)
+self.hi_there.pack(side=LEFT)
+```
 
 这次，我们向构造函数传递了一些选项作为关键字参数。 第一个按钮标记为“QUIT”，并且变为红色（fg是foreground(前景)的缩写。 第二个标记为“Hello”。 这两个按钮都有一个命令选项。 此选项指定一个函数，或（在这个例子中）一个绑定的方法，将在单击按钮时调用。
 
@@ -73,17 +78,21 @@ from Tkinter import *
 
 接下来给出“hello”按钮回调。 它只是在每次按下按钮时向控制台打印一条消息：
 
-    def say_hi(self):
-    	print "hi there, everyone!"
+```python
+def say_hi(self):
+	print "hi there, everyone!"
+```
 
 最后，我们提供一些脚本级代码，用于创建一个 Tk 根窗口组件，以及创建App类的实例并使用根窗口组件作为其父窗口：
 
-	root = Tk()
-	
-	app = App(root)
-	
-	root.mainloop()
-	root.destroy()
+```python
+root = Tk()
+
+app = App(root)
+
+root.mainloop()
+root.destroy()
+```
 
 调用 **mainloop** 进入Tk事件循环，在该循环中应用程序将一直保持到调用 **quit** 方法（只需单击QUIT按钮），或者窗口关闭。
 
@@ -97,12 +106,16 @@ from Tkinter import *
 
 请注意，如果您不需要保留对窗口小部件的引用，则可能很容易在一行中创建和打包它：
 
-	Button(frame, text="Hello", command=self.hello).pack(side=LEFT)
+```python
+Button(frame, text="Hello", command=self.hello).pack(side=LEFT)
+```
 
 不要存储此操作的结果; 你只会在尝试使用该值时感到失望（pack方法返回None）。 为了安全起见，最好始终将构造与打包分开：
 
-	w = Button(frame, text="Hello", command=self.hello) 
-	w.pack(side=LEFT)
+```python
+w = Button(frame, text="Hello", command=self.hello) 
+w.pack(side=LEFT)
+```
 
 **关于组件的名称**
 
@@ -111,7 +124,9 @@ Another source of confusion, especially for those who have some experience of pr
 button .dialog.ok
 The corresponding Tkinter call would look like:
 
-	ok = Button(dialog)
+```python
+ok = Button(dialog)
+```
 However, in the Tkinter case, ok and dialog are references to widget instances, not the actual names of the widgets. Since Tk itself needs the names, Tkinter automatically assigns a unique name to each new widget. In the above case, the dialog name is probably something like “.1428748,” and the button could be named “.1428748.1432920”. If you wish to get the full name of a Tkinter widget, simply use the str function on the widget instance:
 
 >>> print str(ok)
@@ -122,5 +137,8 @@ If you really need to specify the name of a widget, you can use the name option 
 
 In the following example, the resulting widget is named “.dialog.ok” (or, if you forgot to name the dialog, something like “.1428748.ok”):
 
-	ok = Button(dialog, name="ok")
+```python
+ok = Button(dialog, name="ok")
+```
+
 To avoid conflicts with Tkinter’s naming scheme, don’t use names which only contain digits. Also note that name is a “creation only” option; you cannot change the name once you’ve created the widget.

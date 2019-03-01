@@ -12,7 +12,7 @@ Tkinter 简介，原文档最后更新于2005年11月。
  - [Tkinter 是什么?](whats-tkinter.md)
  - 事件和绑定
  - 标准对话框
-- 组件参考
+ - 组件参考
  - Canvas 组件
  - Entry 组件
  - Listbox 组件
