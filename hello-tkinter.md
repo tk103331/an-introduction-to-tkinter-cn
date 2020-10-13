@@ -12,7 +12,7 @@
 
 首先，让我们看一个非常小的版本：
 
-**我们的第一个Tkinter程序（文件：hello1.py）**
+**我们的第一个Tkinter程序（文件：code/hello-tkinter.py）**
 ``` python
     from Tkinter import *
     

@@ -119,26 +119,37 @@ w.pack(side=LEFT)
 
 **关于组件的名称**
 
-Another source of confusion, especially for those who have some experience of programming Tk using Tcl, is Tkinter’s notion of the widget name. In Tcl, you must explicitly name each widget. For example, the following Tcl command creates a Button named “ok”, as a child to a widget named “dialog” (which in turn is a child of the root window, “.”).
+另一个让人困惑的原因是Tkinter关于小部件名称的概念，特别是对于那些有使用Tcl编程Tk的经验的人来说。在Tcl中，必须显式地命名每个小部件。例如，下面的Tcl命令创建了一个名为“ok”的按钮，作为名为“dialog”的组件的子控件（该组件又是根窗口“.”的子组件）。
 
+``` tcl
 button .dialog.ok
-The corresponding Tkinter call would look like:
+```
+
+相应的Tkinter调用如下所示：
 
 ```python
 ok = Button(dialog)
 ```
-However, in the Tkinter case, ok and dialog are references to widget instances, not the actual names of the widgets. Since Tk itself needs the names, Tkinter automatically assigns a unique name to each new widget. In the above case, the dialog name is probably something like “.1428748,” and the button could be named “.1428748.1432920”. If you wish to get the full name of a Tkinter widget, simply use the str function on the widget instance:
 
+然而，在Tkinter的例子中，ok和dialog是对小部件实例的引用，而不是小部件的实际名称。由于Tk本身需要这些名称，Tkinter会自动为每个新的小部件分配一个唯一的名称。在上面的例子中，对话框名称可能类似“.1428748”，按钮可以命名为“.1428748.1432920”。如果要获取Tkinter小部件的全名，只需在小部件实例上使用str函数：
+
+
+```
 >>> print str(ok)
 .1428748.1432920
-(if you print something, Python automatically uses the str function to find out what to print. But obviously, an operation like “name = ok” won’t do the that, so make sure always to explicitly use str if you need the name).
+```
+（如果要打印某些内容，Python会自动使用str函数来查找要打印的内容。但是很明显，像“name=ok”这样的操作不能做到这一点，因此如果需要名称，请确保始终显式使用str）。
 
-If you really need to specify the name of a widget, you can use the name option when you create the widget. One (and most likely the only) reason for this is if you need to interface with code written in Tcl.
+如果确实需要指定小部件的名称，可以在创建小部件时使用name选项。其中一个（而且很可能是唯一的）原因是如果您需要与用Tcl编写的代码进行接口。
 
-In the following example, the resulting widget is named “.dialog.ok” (or, if you forgot to name the dialog, something like “.1428748.ok”):
+在下面的示例中，生成的小部件名为“.dialog.ok”。（或者，如果你忘了给对话框命名，类似“.1428748.ok”）：
 
 ```python
 ok = Button(dialog, name="ok")
 ```
 
-To avoid conflicts with Tkinter’s naming scheme, don’t use names which only contain digits. Also note that name is a “creation only” option; you cannot change the name once you’ve created the widget.
+为了避免与Tkinter的命名方案冲突，不要使用只包含数字的名称。还要注意，name是一个“creation only”选项；一旦创建了组件，就不能更改名称。
+
+----------
+
+**[上一页](hello-tkinter.md)**    **[下一页]()**
