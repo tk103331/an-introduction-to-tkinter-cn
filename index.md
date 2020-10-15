@@ -6,9 +6,9 @@
 > 注意：本节中可能缺少某些图像和示例脚本，某些链接可能已损坏。
 
 - [Tkinter 是什么?](whats-tkinter.md)
-- Hello, Tkinter
-- Hello, Again
-- Tkinter 类
+- [Hello, Tkinter](hello-tkinter.md)
+- [Hello, Again](hello-again.md)
+- [Tkinter 类](tkinter-classes.md)
 - 组件配置
 - 组件样式
 - 事件和绑定
@@ -39,14 +39,14 @@
 - Spinbox 组件
 - Text 组件
 - Toplevel 组件
-- Basic Widget Methods
-- Toplevel Window Methods
-- The Grid Geometry Manager
-- The Pack Geometry Manager
-- The Place Geometry Manager
-- The BitmapImage Class
-- The PhotoImage Class
-- Variable Wrappers (BooleanVar, DoubleVar, IntVar, StringVar)
+- 基本组件方法
+- 顶层窗口(Toplevel)方法
+- 表格布局管理器(Grid Geometry Manager)
+- 打包布局管理器(Pack Geometry Manager)
+- 放置布局管理器(Place Geometry Manager)
+- 位图(BitmapImage)类
+- 照片图像(PhotoImage)类
+- 变量包装器 (BooleanVar, DoubleVar, IntVar, StringVar)
 
 
 
