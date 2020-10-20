@@ -1,3 +1,7 @@
+**[上一页](hello-again.md)**    **下一页**
+
+----------
+
 ## Tkinter 类 ##
 
 **组件类**
@@ -78,32 +82,43 @@ Tkinter 支持15个核心组件：
 
     一个Entry组件的变体，用于从范围或有序集中选择值。
 
-Also note that there’s no widget class hierarchy in Tkinter; all widget classes are siblings in the inheritance tree.
+另外需要注意的是，Tkinter中没有组件类层次结构；所有组件类都是处于继承树中的同级。
 
-All these widgets provide the Misc and geometry management methods, the configuration management methods, and additional methods defined by the widget itself. In addition, the Toplevel class also provides the window manager interface. This means that a typical widget class provides some 150 methods.
+所有这些组件都提供了Misc和布局管理方法、配置管理方法以及组件本身定义的其他方法。此外，顶层窗口(TopLevel)类还提供窗口管理器接口。这意味着一个典型的组件类提供大约150个方法。
 
-Mixins
 
-The Tkinter module provides classes corresponding to the various widget types in Tk, and a number of mixin and other helper classes (a mixin is a class designed to be combined with other classes using multiple inheritance). When you use Tkinter, you should never access the mixin classes directly.
+**Mixins**
 
-Implementation mixins
+Tkinter模块提供了与Tk中的各种组件相对应的类，以及许多mixin和其他helper类（mixin是一个设计成使用多重继承与其他类组合的类）。使用Tkinter时，不应直接访问mixin类。
 
-The Misc class is used as a mixin by the root window and widget classes. It provides a large number of Tk and window related services, which are thus available for all Tkinter core widgets. This is done by delegation; the widget simply forwards the request to the appropriate internal object.
 
-The Wm class is used as a mixin by the root window and Toplevel widget classes. It provides window manager services, also by delegation.
+**实现Mixins**
 
-Using delegation like this simplifies your application code: once you have a widget, you can access all parts of Tkinter using methods on the widget instance.
+Misc类被根窗口和组件类用作mixin。它提供了大量Tk和窗口相关的服务，因此所有Tkinter核心部件都可以使用这些服务。这是通过代理(delegation)完成的；组件只是将请求转发到适当的内部对象。
 
-Geometry mixins
+Wm类被根窗口和顶级窗口组件类用作mixin。它提供窗口管理器服务，也通过代理实现。
 
-The Grid, Pack, and Place classes are used as mixins by the widget classes. They provide access to the various geometry managers, also via delegation.
+使用这样的代理可以简化应用程序代码：一旦有了组件，就可以使用组件实例上的方法访问Tkinter的所有部分。
 
-Grid
-The grid geometry manager allows you to create table-like layouts, by organizing the widgets in a 2-dimensional grid. To use this geometry manager, use the grid method.
-Pack
-The pack geometry manager lets you create a layout by “packing” the widgets into a parent widget, by treating them as rectangular blocks placed in a frame. To use this geometry manager for a widget, use the pack method on that widget to set things up.
-Place
-The place geometry manager lets you explicitly place a widget in a given position. To use this geometry manager, use the place method.
-Widget configuration management
+**布局相关Mixins**
 
-The Widget class mixes the Misc class with the geometry mixins, and adds configuration management through the cget and configure methods, as well as through a partial dictionary interface. The latter can be used to set and query individual options, and is explained in further detail in the next chapter.
+Grid、Pack和Place类被组件类用作mixin。它们可以访问各种布局管理器，也是通过代理实现。
+
+*Grid*
+
+网格布局管理器允许您通过在二维网格中组织组件，来创建类似表格的布局。要对组件应用表格布局管理器，请使用 *grid* 方法。
+
+*Pack*
+
+打包布局管理器允许您通过将组件“打包”到父部件中来创建布局，方法是将它们视为放置在框架中的矩形块。要对组件应用打包布局管理器，请使用该组件的 *pack* 方法来设置。
+
+*Place*
+
+放置布局管理器允许您明确地将组件放置在指定位置。要对组件应用打包布局管理器，请使用 *place* 方法。
+
+组件配置管理
+
+组件类将 *Misc* 类与布局 *mixin* 混合，并通过 *cget* 和 *configure* 方法以及部分字典接口添加配置管理。后者可用于设置和查询单个选项，将在下一章中进一步详细解释。
+
+----------
+**[上一页](hello-again.md)**    **下一页**
