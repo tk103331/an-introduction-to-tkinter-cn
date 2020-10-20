@@ -1,6 +1,6 @@
 
 
-**[上一页](hello-tkinter.md)**    **下一页**
+**[上一页](hello-tkinter.md)**    **[下一页](tkinter-classes.md)**
 
 ----------
 
@@ -152,4 +152,4 @@ ok = Button(dialog, name="ok")
 
 ----------
 
-**[上一页](hello-tkinter.md)**    **[下一页]()**
+**[上一页](hello-tkinter.md)**    **[下一页](tkinter-classes.md)**

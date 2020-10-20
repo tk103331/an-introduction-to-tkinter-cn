@@ -102,7 +102,7 @@ Tkinter简介目录 [[tkinter-index](index.md)]
 
 应用程序窗口 [tkinter-application-windows]
 
-Tkinter 类 [tkinter-classes]
+Tkinter 类 [[tkinter-classes](tkinter-classes.md)]
 
 颜色输入框 [tkinter-color-dialogs]
 
