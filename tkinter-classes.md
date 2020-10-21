@@ -1,4 +1,4 @@
-**[上一页](hello-again.md)**    **下一页**
+**[上一页](hello-again.md)**    **[下一页](widget-configuration.md)**
 
 ----------
 
@@ -121,4 +121,5 @@ Grid、Pack和Place类被组件类用作mixin。它们可以访问各种布局�
 组件类将 *Misc* 类与布局 *mixin* 混合，并通过 *cget* 和 *configure* 方法以及部分字典接口添加配置管理。后者可用于设置和查询单个选项，将在下一章中进一步详细解释。
 
 ----------
-**[上一页](hello-again.md)**    **下一页**
+
+**[上一页](hello-again.md)**    **[下一页](widget-configuration.md)**

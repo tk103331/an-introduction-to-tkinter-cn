@@ -9,7 +9,7 @@
 - [Hello, Tkinter](hello-tkinter.md)
 - [Hello, Again](hello-again.md)
 - [Tkinter 类](tkinter-classes.md)
-- 组件配置
+- [组件配置](widget-configuration.md)
 - 组件样式
 - 事件和绑定
 - 程序窗口

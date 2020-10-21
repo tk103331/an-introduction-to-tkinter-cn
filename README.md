@@ -122,7 +122,7 @@ Tkinter 简介，原文档最后更新于2005年11月。
 
 - 什么是 Tkinter? [tkinter-whats-tkinter]
 
-- 组件配置 [tkinter-widget-configuration]
+- 组件配置 [[tkinter-widget-configuration](widget-configuration.md)]
 
 - 组件样式 [tkinter-widget-styling]
 
