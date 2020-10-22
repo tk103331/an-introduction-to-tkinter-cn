@@ -43,6 +43,8 @@ from Tkinter import *
 
 运行此示例时，将显示以下窗口。
 
+![](hello-again.gif)
+
 运行示例程序（在Windows 95机器上使用Tk 8.0）。
 
 如果你点击右边的按钮，会在控制台打印文本“hi there，everyone！”；如果单击左边的按钮，程序停止。

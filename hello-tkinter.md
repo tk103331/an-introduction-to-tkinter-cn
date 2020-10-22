@@ -4,7 +4,7 @@
 
 ----------
 
-## Hello, Tkinter ##
+# Hello, Tkinter #
 
 废话不多说，现在来看一些代码。
 
