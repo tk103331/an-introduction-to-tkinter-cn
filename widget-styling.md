@@ -6,183 +6,225 @@
 
 所有Tkinter标准部件都提供了一组基本的“样式”选项，允许您修改每个部件的颜色、字体和其他视觉特性。
 
-All Tkinter standard widgets provide a basic set of “styling” options, which allow you to modify things like colors, fonts, and other visual aspects of each widget.
 
-## Colors ##
-Most widgets allow you to specify the widget and text colors, using the background and foreground options. To specify a color, you can either use a color name, or explicitly specify the red, green, and blue (RGB) color components.
+## 颜色 ##
 
-### Color Names ###
-Tkinter includes a color database which maps color names to the corresponding RGB values. This database includes common names like Red, Green, Blue, Yellow, and LightBlue, but also more exotic things like Moccasin, PeachPuff, etc.
+大多数组件允许您使用背景和前景选项指定组件和文本颜色。要指定颜色，可以使用颜色名称，也可以显式指定红色(**R**ed)、绿色(**G**reen)和蓝色(**B**lue)（即RGB）颜色组件。
 
-On an X window system, the color names are defined by the X server. You might be able to locate a file named xrgb.txt which contains a list of color names and the corresponding RGB values. On Windows and Macintosh systems, the color name table is built into Tk.
+### 颜色名称 ###
 
-Under Windows, you can also use the Windows system colors (these can be changed by the user via the control panel):
+Tkinter包括一个颜色数据库，它将颜色名称映射到相应的RGB值。这个数据库包括一些常见的名字，如*Red*、 *Green*、 *Blue*、 *Yellow*和*LightBlue*，但也有一些更具异国情调的东西，如Moccasin、PeachPuff等。
 
-SystemActiveBorder,  
- SystemActiveCaption, SystemAppWorkspace, SystemBackground, SystemButtonFace, SystemButtonHighlight, SystemButtonShadow, SystemButtonText, SystemCaptionText, SystemDisabledText, SystemHighlight, SystemHighlightText, SystemInactiveBorder, SystemInactiveCaption, SystemInactiveCaptionText, SystemMenu, SystemMenuText, SystemScrollbar, SystemWindow, SystemWindowFrame, SystemWindowText.
+在X窗口系统上，颜色名称由X服务器定义。您可能能够找到名为xrgb.txt文件，它包含颜色名称和相应的RGB值的列表。在Windows和Macintosh系统上，颜色名称表内置在Tk中。
 
-On the Macintosh, the following system colors are available:
+在Windows下，还可以使用Windows系统颜色（用户可以通过控制面板更改这些颜色）：
 
-SystemButtonFace, SystemButtonFrame, SystemButtonText, SystemHighlight, SystemHighlightText, SystemMenu, SystemMenuActive, SystemMenuActiveText, SystemMenuDisabled, SystemMenuText, SystemWindowBody.
 
-Color names are case insensitive. Many (but not all) color names are also available with or without spaces between the words. For example, “lightblue”, “light blue”, and “Light Blue” all specify the same color.
+    SystemActiveBorder,  
+    SystemActiveCaption,   
+    SystemAppWorkspace,   
+    SystemBackground,   
+    SystemButtonFace,   
+    SystemButtonHighlight,   
+    SystemButtonShadow,   
+    SystemButtonText,   
+    SystemCaptionText,   
+    SystemDisabledText,   
+    SystemHighlight,   
+    SystemHighlightText,   
+    SystemInactiveBorder,   
+    SystemInactiveCaption,   
+    SystemInactiveCaptionText,   
+    SystemMenu,   
+    SystemMenuText,   
+    SystemScrollbar,   
+    SystemWindow,   
+    SystemWindowFrame,   
+    SystemWindowText.
 
-### RGB Specifications ###
-If you need to explicitly specify a color, you can use a string with the following format:
+在Macintosh上，可以使用以下系统颜色：
 
-#RRGGBB
-RR, GG, BB are hexadecimal representations of the red, green and blue values, respectively. The following sample shows how you can convert a color 3-tuple to a Tk color specification:
+    SystemButtonFace,   
+    SystemButtonFrame,   
+    SystemButtonText,    
+    SystemHighlight,    
+    SystemHighlightText,    
+    SystemMenu,    
+    SystemMenuActive,    
+    SystemMenuActiveText,    
+    SystemMenuDisabled,    
+    SystemMenuText,    
+    SystemWindowBody.
 
-tk_rgb = "#%02x%02x%02x" % (128, 192, 200)
-Tk also supports the forms “#RGB” and “#RRRRGGGGBBBB” to specify each value with 16 and 65536 levels, respectively.
+颜色名称不区分大小写。许多（但不是全部）颜色名称也可以在单词之间加空格或不带空格。例如，““lightblue””、“light blue”和“Light Blue”都指定相同的颜色。
 
-You can use the winfo_rgb widget method to translate a color string (either a name or an RGB specification) to a 3-tuple:
+### RGB规范 ###
 
+如果需要显式指定颜色，可以使用以下格式的字符串：
+
+    #RRGGBB
+
+RR、GG、BB分别是红色、绿色和蓝色值的十六进制表示。以下示例显示如何将颜色3元组转换为Tk颜色规范：
+
+``` python
+    tk_rgb = "#%02x%02x%02x" % (128, 192, 200)
+```
+
+Tk还支持“#RGB”和“#RRRRGGGGBBBB”形式来分别描述16和65536个级别的颜色值。
+
+可以使用组件的 *winfo_rgb* 方法将颜色字符串（名称或RGB形式）转换为3元组：
+
+``` python
 rgb = widget.winfo_rgb("red")
 red, green, blue = rgb[0]/256, rgb[1]/256, rgb[2]/256
-Note that winfo_rgb returns 16-bit RGB values, ranging from 0 to 65535. To map them into the more common 0-255 range, you must divide each value by 256 (or shift them 8 bits to the right).
+``` 
+请注意，winfo_rgb返回16位rgb值，范围从0到65535。要将它们映射到更常见的0-255范围内，必须将每个值除以256（或向右移动8位）。  
 
-## Fonts ##
-Widgets that allow you to display text in one way or another also allows you to specify which font to use. All widgets provide reasonable default values, and you seldom have to specify the font for simpler elements like labels and buttons.
+## 字体 ##
 
-Fonts are usually specifed using the font widget option. Tkinter supports a number of different font descriptor types:
+显示文本的组件允许您允许您指定使用哪种字体。所有的组件都提供合理的默认值，您很少需要为标签和按钮等简单的元素指定字体。
 
-### Font descriptors ###
+字体通常使用 *font* 组件选项指定。Tkinter支持多种不同的字体描述符类型：
 
-User-defined font names
+### 字体描述符 ###
 
-System fonts
+- 用户定义的字体名称
+- 系统字体
+- X字体描述符
+对于8.0之前的Tk版本，只支持X字体描述符（见下文）。
 
-X font descriptors
+字体描述符 #  
+从tk8.0开始，Tkinter支持独立于平台的字体描述符。可以将字体指定为元组，该元组包含族名称、高度（以点为单位）以及可选的具有一个或多个样式的字符串。示例：
 
-With Tk versions before 8.0, only X font descriptors are supported (see below).
-
-Font descriptors #
-Starting with Tk 8.0, Tkinter supports platform independent font descriptors. You can specify a font as tuple containing a family name, a height in points, and optionally a string with one or more styles. Examples:
-
+``` python
 ("Times", 10, "bold")
 ("Helvetica", 10, "bold italic")
 ("Symbol", 8)
-To get the default size and style, you can give the font name as a single string. If the family name doesn’t include spaces, you can also add size and styles to the string itself:
-
+```
+要获得默认大小和样式，可以将字体名称作为单个字符串。如果字体族名称不包含空格，也可以向字符串本身添加大小和样式：  
+``` python
 "Times 10 bold"
 "Helvetica 10 bold italic"
 "Symbol 8"
-Here are some families available on most Windows platforms:
+```
+以下是大多数Windows平台上可用的一些字体族：  
 
 Arial (corresponds to Helvetica), Courier New (Courier), Comic Sans MS, Fixedsys, MS Sans Serif, MS Serif, Symbol, System, Times New Roman (Times), and Verdana:
 
 ![](widget-styling-01.gif)
 
-Note that if the family name contains spaces, you must use the tuple syntax described above.
+请注意，如果字体族名称包含空格，则必须使用上述元组语法。  
 
-The available styles are normal, bold, roman, italic, underline, and overstrike.
+可用的样式有normal(常规)、bold(粗体)、roman(罗马)、italic(斜体)、underline(下划线)和overstrike(删除线)。
 
-Tk 8.0 automatically maps Courier, Helvetica, and Times to their corresponding native family names on all platforms. In addition, a font specification can never fail under Tk 8.0; if Tk cannot come up with an exact match, it tries to find a similar font. If that fails, Tk falls back to a platform-specific default font. Tk’s idea of what is “similar enough” probably doesn’t correspond to your own view, so you shouldn’t rely too much on this feature.
+TK8.0自动将Courier、Helvetica和Times映射到所有平台上相应的本地字体族。此外，在tk8.0下，字体规范永远不会失败；如果Tk不能找到一个完全匹配的字体，它会尝试找到一个类似的字体。如果失败，Tk将返回到特定于平台的默认字体。Tk关于什么是“足够相似”的想法可能与您自己的观点不符，因此您不应该过分依赖这个特性。
 
-Tk 4.2 under Windows supports this kind of font descriptors as well. There are several restrictions, including that the family name must exist on the platform, and not all the above style names exist (or rather, some of them have different names).
+Windows下的tk4.2也支持这种字体描述符。有几个限制，包括字体族名必须存在于平台上，并且并非所有上述样式名都存在（或者说，其中一些具有不同的名称）。
 
-### Font names ###
-In addition, Tk 8.0 allows you to create named fonts and use their names when specifying fonts to the widgets.
 
-The tkFont module provides a Font class which allows you to create font instances. You can use such an instance everywhere Tkinter accepts a font specifier. You can also use a font instance to get font metrics, including the size occupied by a given string written in that font.
+### 字体名称 ###
+此外，Tk8.0允许您创建命名字体，并在为组件指定字体时使用它们的名称。  
 
- 
+tkFont模块提供了一个字体类，允许您创建字体实例。在Tkinter接受字体说明符的任何地方都可以使用这样的实例。还可以使用字体实例获取字体度量，包括用该字体编写的给定字符串所占的大小。
+
+``` python 
 tkFont.Font(family="Times", size=10, weight=tkFont.BOLD)
 tkFont.Font(family="Helvetica", size=10, weight=tkFont.BOLD,
             slant=tkFont.ITALIC)
 tkFont.Font(family="Symbol", size=8)
-If you modify a named font (using the config method), the changes are automatically propagated to all widgets using the font.
+```
+如果修改命名字体（使用config方法），更改将自动传播到使用该字体的所有组件。
 
-The Font constructor supports the following style options (note that the constants are defined in the tkFont module):
+**Font**构造函数支持以下样式选项（请注意，常量是在 **tkFont**模块中定义的）：
 
-family
-Font family.
+**family**  字体族
 
-size
-Font size in points. To give the size in pixels, use a negative value.
+**size**  以磅为单位的字体大小。要以像素为单位指定大小，请使用负值。
 
-weight
-Font thickness. Use one of NORMAL or BOLD. Default is NORMAL.
+**weight**  字体粗细。使用**NORMAL**或**BOLD**。默认值为**NORMAL**。
 
-slant
-Font slant. Use one of NORMAL or ITALIC. Default is NORMAL.
+**slant**  字体倾斜。使用**NORMAL**或**ITALIC**。默认值为**NORMAL**。
 
-underline
-Font underlining. If 1 (true), the font is underlined. Default is 0 (false).
+**underline**  字体下划线。如果为1（真），字体加下划线。默认值为0（false）。
 
-overstrike
-Font strikeout. If 1 (true), a line is drawn over text written with this font. Default is 0 (false).
+**overstrike**  字体删除线。如果为1（真），则在使用此字体编写的文本上绘制一条线。默认值为0（false）。
 
-### System fonts ###
-Tk also supports system specific font names. Under X, these are usually font aliases like fixed, 6x10, etc.
+### 系统字体 ###
+Tk还支持特定于系统的字体名称。在X System下，这些通常是字体别名，如 **fixed** 、**6x10**等。
 
-Under Windows, these include ansi, ansifixed, device, oemfixed, system, and systemfixed:
+在Windows下，包括 **ansi**、**ansifixed**、**device**、**oemfixed**、**system**和**systemfixed**：
 
 ![](widget-styling-02.gif)
 
-On the Macintosh, the system font names are application and system.
+在Macintosh上，系统字体名是 **application** 和 **system** 。
 
-Note that the system fonts are full font names, not family names, and they cannot be combined with size or style attributes. For portability reasons, avoid using these names wherever possible.
+注意，系统字体是完整的字体名称，而不是族名，并且它们不能与大小或样式属性组合。出于可移植性的原因，尽可能避免使用这些名称。
 
-### X Font Descriptors ###
-X Font Descriptors are strings having the following format (the asterisks represent fields that are usually not relevant. For details, see the Tk documentation, or an X manual):
+### X字体描述符 ###
+X字体描述符是具有以下格式的字符串（星号表示通常不相关的字段）。有关详细信息，请参阅Tk文档或X手册）：
 
--*-family-weight-slant-*--*-size-*-*-*-*-charset
-The font family is typically something like Times, Helvetica, Courier or Symbol.
+    -*-family-weight-slant-*--*-size-*-*-*-*-charset
 
-The weight is either Bold or Normal. Slant is either R for “roman” (normal), I for italic, or O for oblique (in practice, this is just another word for italic).
+字体系列通常是像 **Times** 、**Helvetica**、**Courier**或**Symbol**之类的。
 
-Size is the height of the font in decipoints (that is, points multiplied by 10). There are usually 72 points per inch, but some low-resolution displays may use larger “logical” points to make sure that small fonts are still legible. The character set, finally, is usually ISO8859-1 (ISO Latin 1), but may have other values for some fonts.
+*weight* 不是 **Bold** 就是 **Normal**。斜体可以是R代表“罗马”（normal），I代表斜体，或者O代表斜体（实际上，这只是斜体的另一个词）。
 
-The following descriptor requests a 12-point boldface Times font, using the ISO Latin 1 character set:
+*size* 是字体的高度，以分点为单位（即点数乘以10）。通常每英寸有72个点，但一些低分辨率显示器可能使用更大的“逻辑”点来确保小字体仍然清晰易读。最后，字符集通常是 **ISO8859-1**（ISO Latin 1），但对于某些字体可能有其他值。
 
--*-Times-Bold-R-*--*-120-*-*-*-*-ISO8859-1
-If you don’t care about the character set, or use a font like Symbol which has a special character set, you can use a single asterisk as the last component:
+以下描述符要求使用ISO Latin 1字符集的12点黑体乘以字体：
 
--*-Symbol-*-*-*--*-80-*
-A typical X server supports at least Times, Helvetica, Courier, and a few more fonts, in sizes like 8, 10, 12, 14, 18, and 24 points, and in normal, bold, and italic (Times) or oblique (Helvetica, Courier) variants. Most servers also support freely scaleable fonts. You can use programs like xlsfonts and xfontsel to check which fonts you have access to on a given server.
+    -*-Times-Bold-R-*--*-120-*-*-*-*-ISO8859-1
 
-This kind of font descriptors can also be used on Windows and Macintosh. Note that if you use Tk 4.2, you should keep in mind that the font family must be one supported by Windows (see above).
+如果您不关心字符集，或使用具有特殊字符集的类似字体的符号，则可以使用单个星号作为最后一个组件：
 
-## Text Formatting ##
-While text labels and buttons usually contain a single line of text, Tkinter also supports multiple lines. To split the text across lines, simply insert newline characters (\n) where necessary.
+    -*-Symbol-*-*-*--*-80-*
 
-By default, the lines are centered. You can change this by setting the justify option to LEFT or RIGHT. The default value is CENTER.
+一个典型的X服务器至少支持 **Times**、**Helvetica**、**Courier**和其他一些字体，大小如8、10、12、14、18和24点，以及普通、粗体和斜体（**Times**）或斜体（**Helvetica**，**Courier**）变体。大多数服务器也支持可自由缩放的字体。您可以使用**xlsfonts**和**xfontsel**等程序来检查在给定服务器上您可以访问哪些字体。
 
-You can also use the wraplength option to set a maximum width, and let the widget wrap the text over multiple lines all by itself. Tkinter attempts to wrap on whitespace, but if the widget is too narrow, it may break individual words across lines.
+这种字体描述符也可以在Windows和Macintosh上使用。请注意，如果您使用tk4.2，您应该记住字体系列必须是Windows支持的字体系列（见上文）。
 
-## Borders ##
-All Tkinter widgets have a border (though it’s not visible by default for some widgets). The border consists of an optional 3D relief, and a focus highlight region.
+## 文本格式 ##
 
-### Relief ###
-The relief settings control how to draw the widget border:
+虽然文本标签和按钮通常包含一行文本，但Tkinter也支持多行。若要跨行拆分文本，只需在必要的地方插入换行符（**\n**）。
 
-borderwidth (or bd)
-This is the width of the border, in pixels. Most widgets have a default borderwidth of one or two pixels. There’s hardly any reason to make the border wider than that.
+默认情况下居中的。可以通过将 **justify** 选项设置为**LEFT**或**RIGHT**来更改此设置。默认值为**CENTER**。
 
-relief
-This option controls how to draw the 3D border. It can be set to one of SUNKEN, RAISED, GROOVE, RIDGE, and FLAT.
+您还可以使用 **wraplegth** 选项设置最大宽度，并让组件自己将文本包装在多行上。Tkinter试图用空格包装，但如果组件太窄，它可能会跨行打断单个单词。
 
-### Focus Highlights ###
-The highlight settings control how to indicate that the widget (or one of its children) has keyboard focus. In most cases, the highlight region is a border outside the relief. The following options control how this extra border is drawn:
+## 边框 ##
 
-highlightcolor
-This option is used to draw the highlight region when the widget has keyboard focus. It’s usually black, or some other distinct contrast color.
+所有组件都有边框（虽然有些窗口组件的边框并不都是可见的）。边界由可选的3D浮雕和焦点高亮区域组成。
 
-highlightbackground
-This option is used to draw the highlight region when the widget doesn’t have focus. It’s usually same as the widget background.
+### 浮雕 ###
 
-highlightthickness
-This option is the width of the highlight region, in pixels. It is usually one or two pixels for widgets that can take keyboard focus.
+浮雕设置控制如何绘制控件边框：
 
-## Cursors ##
-cursor
-This option controls which mouse cursor to use when the mouse is moved over the widget.
+- **borderwidth** (**bd**)  
+这是边框的宽度，以像素为单位。大多数组件的默认边界宽度为一到两个像素。几乎没有任何理由使边界更宽。
 
-If this option isn’t set, the widget uses the same mouse pointer as its parent.
+- **relief**  
+此选项控制如何绘制三维边界。它可以设置为 **SUNKEN**, **RAISED**, **GROOVE**, **RIDGE**, **FLAT**.
 
-Note that some widgets, including the Text and Entry widgets, set this option by default.
+### 焦点亮点 ###
+
+高亮设置控制如何指示组件（或其子组件）具有键盘焦点。在大多数情况下，突出显示区域是浮雕外部的边界。以下选项控制如何绘制此额外边界：
+
+- **highlightcolor**  
+此选项用于在组件具有键盘焦点时绘制突出显示区域。它通常是黑色的，或者其他一些明显的对比色。
+
+- **highlightbackground**  
+此选项用于在组件没有焦点时绘制突出显示区域。它通常与widget背景相同。
+
+- **highlightthickness**  
+此选项是高光区域的宽度，以像素为单位。它通常是一个或两个像素的组件，可以获取键盘焦点。
+
+## 光标 ##
+- **cursor**  
+此选项控制将鼠标移到组件上时要使用的鼠标光标。
+
+如果未设置此选项，组件将使用与其父对象相同的鼠标指针。
+
+请注意，有些组件（包括文本和输入框组件）默认设置此选项。
 
 ![](widget-styling-03.gif)
 
