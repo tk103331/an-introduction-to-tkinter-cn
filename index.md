@@ -10,7 +10,7 @@
 - [Hello, Again](hello-again.md)
 - [Tkinter 类](tkinter-classes.md)
 - [组件配置](widget-configuration.md)
-- 组件样式
+- [组件样式](widget-styling.md)
 - 事件和绑定
 - 程序窗口
 - 标准对话框

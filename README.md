@@ -124,7 +124,7 @@ Tkinter 简介，原文档最后更新于2005年11月。
 
 - 组件配置 [[tkinter-widget-configuration](widget-configuration.md)]
 
-- 组件样式 [tkinter-widget-styling]
+- 组件样式 [[tkinter-widget-styling](widget-styling.md)]
 
 - *顶层窗口(TopLevel)* 组件 [toplevel]
 

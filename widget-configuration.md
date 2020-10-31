@@ -1,4 +1,4 @@
-**[上一页](tkinter-classes.md)**    **[下一页]( )**
+**[上一页](tkinter-classes.md)**    **[下一页](widget-styling.md)**
 
 ----------
 
@@ -74,4 +74,4 @@ apply函数接受一个函数（在本例中是一个未绑定的方法）、一
 
 ----------
 
-**[上一页](tkinter-classes.md)**    **[下一页]( )**
+**[上一页](tkinter-classes.md)**    **[下一页](widget-styling.md)**
